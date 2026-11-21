@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harbor Lights — Spot the Difference</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">⚓</span>
+    <div>
+      <h1>Harbor Lights</h1>
+      <p>Spot the Difference</p>
+    </div>
+  </div>
+  <div class="hud">
+    <div class="hud-item" id="hud-level">Level 1 · Sunset Harbor</div>
+    <div class="hud-item difficulty" id="hud-difficulty">Easy</div>
+    <div class="hud-item timer" id="hud-timer">
+      <span class="timer-label">⏱</span>
+      <div class="timer-bar"><div class="timer-fill" id="hud-timer-fill"></div></div>
+      <span id="hud-timer-text">3:00</span>
+    </div>
+    <div class="hud-item score">Score <strong id="hud-score">0</strong></div>
+    <div class="hud-item found" id="hud-found">0 / 10 found · 10 left</div>
+    <div class="hud-item" id="hud-hints">Hints: 3</div>
+  </div>
+  <div class="controls">
+    <button id="btn-hint" type="button">💡 Hint <kbd>H</kbd></button>
+    <button id="btn-pause" type="button">⏸ Pause <kbd>P</kbd></button>
+    <button id="btn-mute" type="button">🔊 Sound on</button>
+    <button id="btn-restart" type="button">↻ Restart</button>
+    <button id="btn-menu" type="button">☰ Menu</button>
+  </div>
+</header>
+
+<main id="game-board">
+  <p class="tagline" id="level-tagline">A quiet fishing harbour as the sun goes down.</p>
+  <div class="panels">
+    <figure class="panel">
+      <figcaption>Original</figcaption>
+      <svg id="svg-left" viewBox="0 0 640 420" role="img" aria-label="Original picture"></svg>
+    </figure>
+    <figure class="panel">
+      <figcaption>Spot the differences</figcaption>
+      <svg id="svg-right" viewBox="0 0 640 420" role="img" aria-label="Picture with differences"></svg>
+    </figure>
+  </div>
+  <p class="hint-line">Click a difference on either picture. A wrong click costs 5 seconds. <kbd>H</kbd> spends a hint (−50), <kbd>M</kbd> mutes, <kbd>P</kbd> pauses.</p>
+</main>
+
+<div id="toast" aria-live="polite"></div>
+
+<!-- Title screen -->
+<section id="screen-title" class="overlay">
+  <div class="card">
+    <div class="card-mark">⚓</div>
+    <h2>Harbor Lights</h2>
+    <p class="subtitle">Spot the Difference</p>
+    <p id="title-best">Three harbours. Thirty differences. How sharp are your eyes?</p>
+    <p class="rules">Two pictures of the same harbour side by side — but ten things
+      changed in the second one. Find all ten before the clock runs out.
+      Wrong clicks cost 5 seconds, hints cost 50 points, and a clean run
+      earns three stars.</p>
+    <button id="btn-play" class="primary" type="button">▶ Play — Sunset Harbor</button>
+    <div class="level-select">
+      <button class="level-pick" type="button" data-level="0">1 · Sunset Harbor<span class="lock"></span></button>
+      <button class="level-pick" type="button" data-level="1">2 · Lighthouse at Night<span class="lock"></span></button>
+      <button class="level-pick" type="button" data-level="2">3 · Storm at the Pier<span class="lock"></span></button>
+    </div>
+    <p class="fine">An original game. Art, sounds and scenes made for this game — no network, no downloads.</p>
+  </div>
+</section>
+
+<!-- Level complete -->
+<section id="screen-level" class="overlay hidden">
+  <div class="card">
+    <div class="stars" id="level-stars">★★★</div>
+    <h2 id="level-heading">Level cleared!</h2>
+    <p id="level-summary"></p>
+    <button id="btn-next" class="primary" type="button">Next level →</button>
+  </div>
+</section>
+
+<!-- Out of time -->
+<section id="screen-fail" class="overlay hidden">
+  <div class="card">
+    <div class="card-mark">⏱</div>
+    <h2>Out of time!</h2>
+    <p id="fail-summary"></p>
+    <button id="btn-retry" class="primary" type="button">↻ Try the level again</button>
+  </div>
+</section>
+
+<!-- Game complete -->
+<section id="screen-end" class="overlay hidden">
+  <div class="card">
+    <div class="stars" id="end-stars">★★★★★★★★★</div>
+    <h2 id="end-heading">You cleared every harbour!</h2>
+    <p id="end-summary"></p>
+    <button id="btn-again" class="primary" type="button">↻ Play again</button>
+    <button id="btn-title" type="button">Back to the menu</button>
+  </div>
+</section>
+
+<!-- Paused -->
+<section id="screen-pause" class="overlay hidden">
+  <div class="card">
+    <div class="card-mark">⏸</div>
+    <h2>Paused</h2>
+    <p>The clock is stopped. Take a breath, then look again.</p>
+    <button id="btn-resume" class="primary" type="button">▶ Keep playing</button>
+    <button id="btn-quit" type="button">Back to the menu</button>
+  </div>
+</section>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>
