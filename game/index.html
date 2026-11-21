@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Whiskers' Café — Spot the Difference</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='44' fill='%23e76f51'/%3E%3Ccircle cx='35' cy='42' r='10' fill='%23fff'/%3E%3Ccircle cx='65' cy='42' r='10' fill='%23fff'/%3E%3Ccircle cx='50' cy='62' r='7' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">🐾</span>
+      <div>
+        <h1>Whiskers' Café</h1>
+        <p class="tagline">Spot the Difference</p>
+      </div>
+    </div>
+    <nav id="level-tabs" aria-label="Levels">
+      <button type="button" class="level-tab active" data-level="0">Level 1 · The Cat Café</button>
+      <button type="button" class="level-tab" data-level="1">Level 2 · Firefly Garden</button>
+    </nav>
+    <div id="hud">
+      <div class="hud-item" title="Differences found">
+        <span class="hud-label">Found</span>
+        <span class="hud-value"><span id="found-count">0</span> / <span id="total-count">7</span></span>
+      </div>
+      <div class="hud-item remaining" title="Differences still hiding">
+        <span class="hud-label">Left to find</span>
+        <span class="hud-value" id="remaining-count">7</span>
+      </div>
+      <div class="hud-item" title="Time on this level">
+        <span class="hud-label">Time</span>
+        <span class="hud-value" id="timer">00:00</span>
+      </div>
+      <div class="hud-item" title="Score">
+        <span class="hud-label">Score</span>
+        <span class="hud-value" id="score">0</span>
+      </div>
+      <div class="hud-item" title="Wrong clicks">
+        <span class="hud-label">Misses</span>
+        <span class="hud-value" id="misses">0</span>
+      </div>
+    </div>
+    <div id="top-actions">
+      <button type="button" id="hint-btn" class="action-btn" title="Highlight a hiding difference (costs 50 points, 3 per level)">💡 Hint <span id="hints-left">(3)</span></button>
+      <button type="button" id="sound-btn" class="action-btn" title="Toggle sound (M)">♪ Sound: On</button>
+      <button type="button" id="restart-btn" class="action-btn" title="Restart this level (R)">↺ Restart</button>
+    </div>
+  </header>
+
+  <main id="stage">
+    <section class="panel-wrap" id="panel-a-wrap" aria-label="Picture A">
+      <div class="panel-label"><span class="panel-letter">A</span><span id="scene-name-a">The Cat Café</span></div>
+      <div class="panel" id="panel-a" tabindex="0" role="img" aria-label="Left picture. Click a difference."></div>
+      <div class="panel-hint">Click what looks different here</div>
+    </section>
+    <div id="versus" aria-hidden="true"><span>VS</span></div>
+    <section class="panel-wrap" id="panel-b-wrap" aria-label="Picture B">
+      <div class="panel-label"><span class="panel-letter">B</span><span id="scene-name-b">The Cat Café</span></div>
+      <div class="panel" id="panel-b" tabindex="0" role="img" aria-label="Right picture. Click a difference."></div>
+      <div class="panel-hint">…or the matching spot here</div>
+    </section>
+    <div id="cursor" aria-hidden="true"></div>
+  </main>
+
+  <footer id="howto">
+    <p><strong>How to play:</strong> The two pictures look the same — but <strong>7 things</strong> are different.
+    Click a difference on either picture to circle it. Find all 7 before the clock runs too long for a 3-star finish.</p>
+    <p class="keys"><strong>Keyboard:</strong> <kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd> move the ring ·
+    <kbd>Tab</kbd> switch picture · <kbd>Enter</kbd>/<kbd>Space</kbd> pick a spot ·
+    <kbd>H</kbd> hint · <kbd>R</kbd> restart · <kbd>M</kbd> sound</p>
+  </footer>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <div id="overlay" class="overlay">
+    <div class="overlay-card" id="overlay-card">
+      <!-- filled by game.js: title screen / win screen / level complete -->
+    </div>
+  </div>
+</div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
